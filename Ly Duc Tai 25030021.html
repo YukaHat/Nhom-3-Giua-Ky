@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="vi" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE BOOK OF VENGEANCE - The Middle Portfolio</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=VT323&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        ricardo: {
+                            bg: '#05030a',
+                            panel: '#10081d',
+                            purple: '#200738',
+                            fuchsia: '#bd00ff',
+                            neonPink: '#ff007f',
+                            gold: '#ffd700',
+                            goldMid: '#c59b27',
+                            goldDark: '#785608',
+                            paper: '#130d21'
+                        }
+                    },
+                    fontFamily: {
+                        title: ['Cinzel', 'serif'],
+                        body: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['VT323', 'monospace']
+                    },
+                    boxShadow: {
+                        'gold-3d': '0 0 15px rgba(255, 215, 0, 0.4), inset 0 0 10px rgba(255, 215, 0, 0.3)',
+                        'pink-lightning': '0 0 25px rgba(255, 0, 127, 0.6), 0 0 50px rgba(189, 0, 255, 0.3)',
+                        'crest-glow': '0 0 20px rgba(255, 215, 0, 0.6)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        ::-webkit-scrollbar {
+            width: 7px;
+            height: 7px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #05030a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #200738;
+            border: 1px solid #c59b27;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff007f;
+        }
+
+        .ricardo-cover-pattern {
+            background-color: #200738;
+            background-image: 
+                radial-gradient(ellipse at center, rgba(255, 0, 127, 0.3) 0%, transparent 70%),
+                repeating-linear-gradient(45deg, rgba(189, 0, 255, 0.15) 0px, rgba(189, 0, 255, 0.15) 2px, transparent 2px, transparent 10px),
+                repeating-linear-gradient(-45deg, rgba(255, 0, 127, 0.2) 0px, rgba(255, 0, 127, 0.2) 3px, transparent 3px, transparent 12px);
+            position: relative;
+        }
+
+        .lightning-overlay {
+            background: 
+                radial-gradient(circle at 30% 20%, rgba(255, 0, 127, 0.4), transparent 40%),
+                radial-gradient(circle at 70% 80%, rgba(189, 0, 255, 0.4), transparent 40%);
+        }
+
+        .gold-corner {
+            position: absolute;
+            width: 38px;
+            height: 38px;
+            border: 4px solid #ffd700;
+            background: linear-gradient(135deg, #ffd700 0%, #c59b27 50%, #614502 100%);
+            box-shadow: 0 0 8px rgba(0,0,0,0.8), inset 0 0 4px rgba(255,255,255,0.6);
+            z-index: 20;
+        }
+        .corner-tl { top: 0; left: 0; border-right: none; border-bottom: none; border-radius: 4px 0 12px 0; }
+        .corner-tr { top: 0; right: 0; border-left: none; border-bottom: none; border-radius: 0 4px 0 12px; }
+        .corner-bl { bottom: 0; left: 0; border-right: none; border-top: none; border-radius: 0 12px 0 4px; }
+        .corner-br { bottom: 0; right: 0; border-left: none; border-top: none; border-radius: 12px 0 4px 0; }
+
+        .middle-crest-ring {
+            background: radial-gradient(circle, #fce068 0%, #c59b27 60%, #543c04 100%);
+            border: 4px solid #ffd700;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.9), inset 0 0 10px rgba(0,0,0,0.8), 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+
+        .chain-link {
+            width: 14px;
+            height: 24px;
+            border: 3px solid #ffd700;
+            background: linear-gradient(to right, #e6c229, #8c680d);
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.7);
+        }
+
+        .scanlines {
+            background: linear-gradient(
+                to bottom,
+                rgba(255,255,255,0),
+                rgba(255,255,255,0) 50%,
+                rgba(0, 0, 0, 0.3) 50%,
+                rgba(0, 0, 0, 0.3)
+            );
+            background-size: 100% 4px;
+        }
+
+        .gold-border-box {
+            border: 2px solid #c59b27;
+            box-shadow: 0 0 10px rgba(197, 155, 39, 0.2), inset 0 0 8px rgba(197, 155, 39, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-ricardo-bg text-gray-200 font-body min-h-screen relative overflow-x-hidden selection:bg-ricardo-neonPink selection:text-white">
+
+    <div class="fixed inset-0 scanlines z-50 pointer-events-none opacity-30"></div>
+
+    <div class="fixed -top-20 -left-20 w-[500px] h-[500px] bg-ricardo-fuchsia/20 blur-[150px] rounded-full pointer-events-none"></div>
+    <div class="fixed -bottom-20 -right-20 w-[500px] h-[500px] bg-ricardo-neonPink/20 blur-[150px] rounded-full pointer-events-none"></div>
+
+    <div class="max-w-6xl mx-auto px-3 sm:px-6 py-6 md:py-10 relative z-10">
+
+        <div id="bookCoverView" class="flex flex-col items-center justify-center min-h-[85vh] transition-all duration-700">
+            <div class="text-center mb-6">
+                <span class="text-xs font-mono uppercase tracking-[0.3em] text-ricardo-gold">THE MIDDLE SYNDICATE</span>
+                <h1 class="font-title text-3xl sm:text-5xl font-black text-white tracking-widest uppercase mt-1">
+                    BOOK OF <span class="text-ricardo-neonPink">VENGEANCE</span>
+                </h1>
+            </div>
+
+            <div class="relative w-80 sm:w-96 h-[460px] sm:h-[520px] rounded-lg ricardo-cover-pattern p-4 gold-border-box shadow-pink-lightning group cursor-pointer transition-transform duration-500 hover:scale-105" onclick="openLedger()">
+                <div class="absolute inset-0 lightning-overlay rounded-lg pointer-events-none"></div>
+
+                <div class="gold-corner corner-tl"></div>
+                <div class="gold-corner corner-tr"></div>
+                <div class="gold-corner corner-bl"></div>
+                <div class="gold-corner corner-br"></div>
+
+                <div class="absolute -top-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 z-30 pointer-events-none">
+                    <div class="chain-link"></div>
+                    <div class="chain-link -mt-2"></div>
+                    <div class="chain-link -mt-2"></div>
+                </div>
+
+                <div class="absolute inset-0 flex items-center justify-center z-20">
+                    <div class="relative">
+                        <div class="w-40 h-40 sm:w-48 sm:h-48 rounded-full middle-crest-ring flex items-center justify-center shadow-crest-glow">
+                            <div class="bg-ricardo-purple/90 border-2 border-ricardo-gold rounded-full w-28 h-28 sm:w-32 sm:h-32 flex items-center justify-center gap-2 px-3 shadow-inner">
+                                <div class="w-3.5 h-12 bg-gradient-to-t from-ricardo-goldDark via-ricardo-gold to-white border border-black rounded-sm shadow-md"></div>
+                                <div class="w-3.5 h-16 bg-gradient-to-t from-ricardo-goldDark via-ricardo-gold to-white border border-black rounded-sm shadow-md"></div>
+                                <div class="w-3.5 h-14 bg-gradient-to-t from-ricardo-goldDark via-ricardo-gold to-white border border-black rounded-sm shadow-md"></div>
+                                <div class="w-3.5 h-10 bg-gradient-to-t from-ricardo-goldDark via-ricardo-gold to-white border border-black rounded-sm shadow-md"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="absolute top-0 bottom-0 left-0 w-3 bg-gradient-to-r from-ricardo-goldDark to-ricardo-gold border-r border-black rounded-l"></div>
+
+                <div class="absolute bottom-6 inset-x-0 text-center z-30">
+                    <span class="inline-block px-4 py-1.5 bg-ricardo-purple/90 border border-ricardo-gold text-ricardo-gold text-xs font-mono tracking-widest rounded-full uppercase shadow-lg group-hover:bg-ricardo-neonPink group-hover:text-black transition-colors">
+                        [ Book Of Vengeance ]
+                    </span>
+                </div>
+            </div>
+
+            <button onclick="openLedger()" class="mt-8 px-8 py-3 bg-ricardo-purple hover:bg-ricardo-neonPink hover:text-black border-2 border-ricardo-gold text-ricardo-gold font-title font-bold tracking-widest text-sm rounded shadow-pink-lightning transition-all duration-300 uppercase flex items-center gap-2">
+                <i data-lucide="book-open" class="w-5 h-5"></i>
+            </button>
+        </div>
+
+        <div id="bookLedgerView" class="hidden transition-all duration-700">
+            
+            <header class="mb-6 bg-ricardo-panel gold-border-box p-4 rounded-lg flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                    <button onclick="closeLedger()" class="p-2 bg-ricardo-purple border border-ricardo-gold text-ricardo-gold hover:text-ricardo-neonPink rounded transition-colors" title="Đóng Sách">
+                        <i data-lucide="book" class="w-5 h-5"></i>
+                    </button>
+                    <div>
+                        <h2 class="font-title text-xl font-bold text-white uppercase tracking-wider">
+                            THE MIDDLE <span class="text-ricardo-neonPink"></span>
+                        </h2>
+                        <span class="text-xs font-mono text-ricardo-gold">RECORD HOLDER: Lý Đức Tài </span>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-2">
+                    <span class="text-xs font-mono text-gray-400">STATUS:</span>
+                    <span class="px-3 py-1 bg-ricardo-purple border border-ricardo-gold text-ricardo-neonPink font-mono text-xs rounded">
+                        ACTIVE SYNDICATE MEMBER
+                    </span>
+                </div>
+            </header>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+                <div class="lg:col-span-4 space-y-4">
+                    
+                    <div class="bg-ricardo-paper gold-border-box p-5 rounded-lg text-center relative overflow-hidden">
+                        <div class="w-28 h-28 mx-auto rounded-full p-1 bg-gradient-to-tr from-ricardo-gold via-ricardo-neonPink to-ricardo-fuchsia shadow-pink-lightning mb-3">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTphjW5GVB29x3DCwdYeRkdMYq58IA6ZRTMT12tftMEz0Qzp5eQLuJEL48&s=10" 
+                                 alt="Avatar" class="w-full h-full object-cover rounded-full">
+                        </div>
+                        <h3 class="font-title text-xl font-bold text-white">Lý Đức Tài</h3>
+                        <p class="text-xs text-ricardo-neonPink font-mono uppercase tracking-widest mt-0.5">Sinh Viên ĐH Bình Dương</p>
+
+                        <div class="mt-4 pt-3 border-t border-ricardo-gold/30 grid grid-cols-2 gap-2 text-xs font-mono">
+                            <div class="bg-ricardo-bg p-2 rounded border border-ricardo-gold/30">
+                                <span class="text-gray-400 block text-[10px]">MSSV</span>
+                                <span class="text-ricardo-gold font-bold">250030021</span>
+                            </div>
+                            <div class="bg-ricardo-bg p-2 rounded border border-ricardo-gold/30">
+                                <span class="text-gray-400 block text-[10px]">CHUYÊN NGÀNH</span>
+                                <span class="text-ricardo-neonPink font-bold">Thiết Kế Đồ Họa</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-ricardo-paper gold-border-box p-3 rounded-lg space-y-2 font-title text-sm">
+                        <div class="text-xs font-mono text-ricardo-gold uppercase px-2 py-1 border-b border-ricardo-gold/20 flex justify-between">
+                            <span>Danh Mục Hồ Sơ</span>
+                            <i data-lucide="bookmark" class="w-4 h-4 text-ricardo-neonPink"></i>
+                        </div>
+
+                        <button onclick="switchTab('profile')" id="btn-profile" class="tab-btn w-full flex items-center justify-between p-3 rounded border border-ricardo-gold/40 bg-ricardo-purple text-white">
+                            <span class="flex items-center gap-2"><i data-lucide="user" class="w-4 h-4 text-ricardo-neonPink"></i> Trang I: Giới Thiệu</span>
+                            <i data-lucide="chevron-right" class="w-4 h-4 text-ricardo-gold"></i>
+                        </button>
+
+                        <button onclick="switchTab('projects')" id="btn-projects" class="tab-btn w-full flex items-center justify-between p-3 rounded border border-transparent text-gray-400 hover:text-white hover:border-ricardo-gold/30">
+                            <span class="flex items-center gap-2"><i data-lucide="book-open" class="w-4 h-4 text-ricardo-neonPink"></i> Trang II: Học Vấn</span>
+                            <i data-lucide="chevron-right" class="w-4 h-4 text-ricardo-gold"></i>
+                        </button>
+
+                        <button onclick="switchTab('skills')" id="btn-skills" class="tab-btn w-full flex items-center justify-between p-3 rounded border border-transparent text-gray-400 hover:text-white hover:border-ricardo-gold/30">
+                            <span class="flex items-center gap-2"><i data-lucide="zap" class="w-4 h-4 text-ricardo-neonPink"></i> Trang III: Kinh Nghiệm & Sở Thích</span>
+                            <i data-lucide="chevron-right" class="w-4 h-4 text-ricardo-gold"></i>
+                        </button>
+
+                        <button onclick="switchTab('contact')" id="btn-contact" class="tab-btn w-full flex items-center justify-between p-3 rounded border border-transparent text-gray-400 hover:text-white hover:border-ricardo-gold/30">
+                            <span class="flex items-center gap-2"><i data-lucide="award" class="w-4 h-4 text-ricardo-neonPink"></i> Trang IV: Giải Thưởng & Liên Hệ</span>
+                            <i data-lucide="chevron-right" class="w-4 h-4 text-ricardo-gold"></i>
+                        </button>
+                    </div>
+
+                    <div class="bg-ricardo-paper gold-border-box p-3 rounded-lg flex justify-around text-ricardo-gold">
+                        <a href="https://github.com" target="_blank" class="p-2 hover:text-ricardo-neonPink"><i data-lucide="github" class="w-5 h-5"></i></a>
+                        <a href="https://linkedin.com" target="_blank" class="p-2 hover:text-ricardo-neonPink"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+                        <a href="mailto:contact@example.com" class="p-2 hover:text-ricardo-neonPink"><i data-lucide="mail" class="w-5 h-5"></i></a>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-8">
+                    
+                    <section id="tab-profile" class="tab-content bg-ricardo-paper gold-border-box p-6 rounded-lg space-y-5">
+                        <div class="border-b border-ricardo-gold/30 pb-3 flex justify-between items-center">
+                            <h2 class="font-title text-xl font-bold text-white flex items-center gap-2">
+                                <span class="text-ricardo-neonPink">TRANG I:</span> Hồ Sơ Cơ Bản
+                            </h2>
+                            <span class="text-xs font-mono text-ricardo-gold">RECORD #001</span>
+                        </div>
+
+                        <p class="text-sm leading-relaxed text-gray-300">
+                            Xin chào! Tôi là Lý Đức Tài, MSSV là 250030021, hiện tại đang theo học tại Đại Học Bình Dương (Binh Duong University). Tôi đang học môn Thiết Kế Web của thầy <strong class="text-ricardo-gold">Trần Thịnh Mạnh Đức</strong>. Tôi có định hướng tương lai sẽ theo học chuyên ngành Thiết Kế Đồ Họa vì niềm đam mê vẽ và thiết kế các mô hình 2D/3D cho các dự án game và đồ họa sau này.
+                        </p>
+
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                            <div class="bg-ricardo-bg border border-ricardo-gold/40 p-3 rounded text-center">
+                                <span class="font-mono text-2xl font-bold text-ricardo-neonPink">Năm 2</span>
+                                <span class="block text-[11px] text-gray-400 font-mono">Sinh Viên</span>
+                            </div>
+                            <div class="bg-ricardo-bg border border-ricardo-gold/40 p-3 rounded text-center">
+                                <span class="font-mono text-2xl font-bold text-ricardo-gold">Môn Học Chuyên Ngành</span>
+                                <span class="block text-[11px] text-gray-400 font-mono">Thiết Kế Wed</span>
+                            </div>
+                            <div class="bg-ricardo-bg border border-ricardo-gold/40 p-3 rounded text-center">
+                                <span class="font-mono text-2xl font-bold text-ricardo-neonPink">90%</span>
+                                <span class="block text-[11px] text-gray-400 font-mono">ĐAM MÊ VÀ HỌC HỎI</span>
+                            </div>
+                            <div class="bg-ricardo-bg border border-ricardo-gold/40 p-3 rounded text-center">
+                                <span class="font-mono text-2xl font-bold text-ricardo-gold">85%</span>
+                                <span class="block text-[11px] text-gray-400 font-mono">TỈ LỆ ĐÚNG TIẾN ĐỘ</span>
+                            </div>
+                        </div>
+
+                        <h3 class="font-title text-md font-bold text-ricardo-gold border-b border-ricardo-gold/20 pb-2">
+                            QUY TẮC CỐT LÕI (SYNDICATE CODE)
+                        </h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                            <div class="bg-ricardo-purple/50 border-l-2 border-ricardo-gold p-3 rounded">
+                                <h4 class="font-title text-white font-bold mb-1">1. Luôn Cố Gắng Hiểu Bài</h4>
+                                <p class="text-gray-400">Cố gắng học, hỏi để có thể hiểu và làm được bài tập cũng như thực hành tốt công việc chuyên ngành về sau.</p>
+                            </div>
+                            <div class="bg-ricardo-purple/50 border-l-2 border-ricardo-neonPink p-3 rounded">
+                                <h4 class="font-title text-white font-bold mb-1">2. Nền Tảng Căn Bản</h4>
+                                <p class="text-gray-400">Nắm vững kiến thức căn bản chính là cốt lõi của môn học và sự phát triển lâu dài.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="tab-projects" class="tab-content hidden bg-ricardo-paper gold-border-box p-6 rounded-lg space-y-5">
+                        <div class="border-b border-ricardo-gold/30 pb-3 flex justify-between items-center">
+                            <h2 class="font-title text-xl font-bold text-white flex items-center gap-2">
+                                <span class="text-ricardo-neonPink">TRANG II:</span> Trình Độ Học Vấn
+                            </h2>
+                            <span class="text-xs font-mono text-ricardo-gold">EDUCATION</span>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="bg-ricardo-bg border border-ricardo-gold/40 rounded p-4">
+                                <span class="text-[10px] font-mono text-ricardo-gold block mb-1">TRƯỜNG ĐẠI HỌC</span>
+                                <h3 class="font-title text-lg font-bold text-white">Đại Học Bình Dương (BDU)</h3>
+                                <p class="text-xs text-ricardo-neonPink font-mono mt-1">MSSV: 250030021 | Chuyên ngành định hướng: Thiết Kế Đồ Họa</p>
+                                <p class="text-xs text-gray-400 mt-2 leading-relaxed">
+                                    Hiện đang theo học chương trình chính quy. Học môn Thiết Kế Web của Thầy <strong class="text-ricardo-gold">Trần Thịnh Mạnh Đức</strong>.
+                                </p>
+                            </div>
+
+                            <div class="bg-ricardo-bg border border-ricardo-gold/40 rounded p-4">
+                                <span class="text-[10px] font-mono text-ricardo-gold block mb-1">Đại Học Chính Quy</span>
+                                <h3 class="font-title text-lg font-bold text-white">Trình Độ Học Vấn 12/12</h3>
+                                <p class="text-xs text-gray-400 mt-2">Đã tốt nghiệp THPT và Đang Theo Học Trường Đại Học Bình Dương.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="tab-skills" class="tab-content hidden bg-ricardo-paper gold-border-box p-6 rounded-lg space-y-5">
+                        <div class="border-b border-ricardo-gold/30 pb-3 flex justify-between items-center">
+                            <h2 class="font-title text-xl font-bold text-white flex items-center gap-2">
+                                <span class="text-ricardo-neonPink">TRANG III:</span> Kinh Nghiệm & Sở Thích
+                            </h2>
+                            <span class="text-xs font-mono text-ricardo-gold">EXPERIENCE & HOBBIES</span>
+                        </div>
+
+                        <div>
+                            <h3 class="font-title text-sm font-bold text-ricardo-gold border-b border-ricardo-gold/20 pb-2 mb-3 uppercase flex items-center gap-2">
+                                <i data-lucide="briefcase" class="w-4 h-4 text-ricardo-neonPink"></i> Kinh Nghiệm 
+                            </h3>
+                            <div class="space-y-3">
+                                <div class="bg-ricardo-bg border border-ricardo-gold/30 p-3 rounded">
+                                    <div class="flex justify-between items-center">
+                                        <h4 class="font-title text-white font-bold text-sm">Thiết Kế Web Cơ Bản (HTML / CSS )</h4>
+                                        <span class="text-[10px] font-mono text-ricardo-neonPink border border-ricardo-neonPink/40 px-2 py-0.5 rounded">Đang Học</span>
+                                    </div>
+                                    <p class="text-xs text-gray-400 mt-1">Thực hành xây dựng giao diện Portfolio (Bài Giữa Kỳ).</p>
+                                </div>
+
+                                <div class="bg-ricardo-bg border border-ricardo-gold/30 p-3 rounded">
+                                    <div class="flex justify-between items-center">
+                                        <h4 class="font-title text-white font-bold text-sm">Dựng Mô Hình & Thiết Kế Đồ Họa 2D/3D</h4>
+                                        <span class="text-[10px] font-mono text-ricardo-gold border border-ricardo-gold/40 px-2 py-0.5 rounded">Đang Tìm Hiểu</span>
+                                    </div>
+                                    <p class="text-xs text-gray-400 mt-1">Tìm hiểu và dựng các mô hình 2D/3D phục vụ định hướng học chuyên ngành Thiết Kế Đồ Họa.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="font-title text-sm font-bold text-ricardo-gold border-b border-ricardo-gold/20 pb-2 mb-3 uppercase flex items-center gap-2">
+                                <i data-lucide="heart" class="w-4 h-4 text-ricardo-neonPink"></i> Sở Thích Cá Nhân
+                            </h3>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                                <div class="bg-ricardo-bg border border-ricardo-gold/30 p-3 rounded flex items-start gap-3">
+                                    <i data-lucide="palette" class="w-5 h-5 text-ricardo-neonPink shrink-0 mt-0.5"></i>
+                                    <div>
+                                        <h4 class="text-white font-bold">Học Vẽ & Thiết Kế Mô Hình 2D-3D</h4>
+                                        <p class="text-gray-400 text-[11px] mt-0.5">đang tìm hiểu về vẽ mô hình, nhân vật và cách khung cảnh.</p>
+                                    </div>
+                                </div>
+                                <div class="bg-ricardo-bg border border-ricardo-gold/30 p-3 rounded flex items-start gap-3">
+                                    <i data-lucide="gamepad-2" class="w-5 h-5 text-ricardo-gold shrink-0 mt-0.5"></i>
+                                    <div>
+                                        <h4 class="text-white font-bold">Khám Phá Game & Nghệ Thuật Game</h4>
+                                        <p class="text-gray-400 text-[11px] mt-0.5">Yêu thích muốn tìm hiểu về các cách thiết kế đồ họa và lối chs của các game hiện nay.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="tab-contact" class="tab-content hidden bg-ricardo-paper gold-border-box p-6 rounded-lg space-y-5">
+                        <div class="border-b border-ricardo-gold/30 pb-3 flex justify-between items-center">
+                            <h2 class="font-title text-xl font-bold text-white flex items-center gap-2">
+                                <span class="text-ricardo-neonPink">TRANG IV:</span> Giải Thưởng Và Chứng Chỉ
+                            </h2>
+                            <span class="text-xs font-mono text-ricardo-gold">AWARDS & Certifier</span>
+                        </div>
+
+                        <div>
+                            <h3 class="font-title text-sm font-bold text-ricardo-gold border-b border-ricardo-gold/20 pb-2 mb-3 uppercase flex items-center gap-2">
+                                <i data-lucide="award" class="w-4 h-4 text-ricardo-neonPink"></i>Giải Thưởng Và Chứng Chỉ
+                            </h3>
+                            <div class="bg-ricardo-bg border border-ricardo-gold/30 p-3 rounded text-xs">
+                                <span class="text-gray-400 italic"></span>
+                                <strong class="text-ricardo-neonPink">Chưa có</strong>
+                                <p class="text-gray-400 mt-1">Đang trong quá trình học chuyên ngành.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-ricardo-paper gold-border-box p-5 rounded-lg max-w-md w-full relative">
+            <button onclick="closeModal()" class="absolute top-3 right-3 text-gray-400 hover:text-ricardo-neonPink"><i data-lucide="x" class="w-5 h-5"></i></button>
+            <h3 id="modalTitle" class="font-title text-lg font-bold text-white mb-2">Title</h3>
+            <p id="modalDesc" class="text-xs text-gray-300 mb-4">Description</p>
+            <div id="modalTags" class="flex flex-wrap gap-1 mb-4"></div>
+            <button onclick="closeModal()" class="w-full py-1.5 bg-ricardo-purple border border-ricardo-gold text-xs font-mono text-ricardo-gold rounded hover:bg-ricardo-neonPink hover:text-black">Đóng</button>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        function openLedger() {
+            document.getElementById('bookCoverView').classList.add('hidden');
+            document.getElementById('bookLedgerView').classList.remove('hidden');
+        }
+
+        function closeLedger() {
+            document.getElementById('bookLedgerView').classList.add('hidden');
+            document.getElementById('bookCoverView').classList.remove('hidden');
+        }
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-ricardo-purple', 'text-white');
+                btn.classList.add('text-gray-400');
+            });
+
+            document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`btn-${tabId}`);
+            activeBtn.classList.add('bg-ricardo-purple', 'text-white');
+            activeBtn.classList.remove('text-gray-400');
+        }
+
+        function handleSend(e) {
+            e.preventDefault();
+            e.target.reset();
+        }
+    </script>
+</body>
+</html>
