@@ -164,12 +164,14 @@ body{
     font-size: 35px;
     color: #ffffff;
     margin-top: 20px;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .content-about{
     font-size: 25px;
     color: #ff2a4b;
     margin-top: 50px;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .logo-box{
